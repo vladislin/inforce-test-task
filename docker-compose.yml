@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    env_file:
+      - .env.dev
+  web:
+    build: ..
+    command: >
+      sh -c "python manage.py makemigrations && 
+      python manage.py migrate 
+      && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./backend/:/app
+    depends_on:
+      - db
+    env_file:
+      - .env.dev
+
+volumes:
+  postgres_volume:
