@@ -22,7 +22,7 @@ RUN  pip install "poetry==$POETRY_VERSION" && poetry --version
 WORKDIR /app
 
 # Install dependencies:
-COPY ../.. pyproject.toml poetry.lock /app/
+COPY ../ pyproject.toml poetry.lock /app/
 RUN poetry install
 # copy project
 COPY ../.. .
