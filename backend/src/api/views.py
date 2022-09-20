@@ -1,13 +1,7 @@
-import datetime
-from datetime import timedelta
-
 from django.conf import settings
-from django.db import connection
-from django.db.models import Q, Max, Window, F
-from django.db.models.functions import Rank
 from rest_framework import permissions, status
-from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Menu, Employee, Vote
@@ -62,7 +56,7 @@ class VoteAPIView(APIView):
         menu = Menu.objects.get(id=menu_id)
 
         if Vote.objects.filter(
-                employee__user__username=username,
+                employee=employee,
                 voted_at__date=settings.CURRENT_DATE,
                 menu__id=menu_id).exists():
             res = {"msg": 'You already voted!', "data": None, "success": False}
@@ -71,7 +65,6 @@ class VoteAPIView(APIView):
             new_vote = Vote.objects.create(
                 employee=employee,
                 menu=menu
-
             )
             menu.votes += 1
             menu.save()

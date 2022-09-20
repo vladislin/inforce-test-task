@@ -14,12 +14,26 @@ from .views import (
 
 
 urlpatterns = [
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('create-restaurant/', CreateRestaurantAPIView.as_view(), name="create-restaurant"),
-    path('create-employee/', CreateEmployeeAPIView.as_view(), name="create-employee"),
-    path('upload-menu/', UploadMenuAPIView.as_view(), name="upload-menu"),
-    path('menu-list/', CurrentDayMenuList.as_view(), name="menu-list"),
-    path('vote/<int:menu_id>/', VoteAPIView.as_view(), name="new-vote"),
+    path(
+        'token/',
+        TokenObtainPairView.as_view(),
+        name='token_obtain_pair'),
+    path('token/refresh/',
+         TokenRefreshView.as_view(),
+         name='token_refresh'),
+    path('create-restaurant/',
+         CreateRestaurantAPIView.as_view(),
+         name="create-restaurant"),
+    path('create-employee/',
+         CreateEmployeeAPIView.as_view(),
+         name="create-employee"),
+    path('upload-menu/',
+         UploadMenuAPIView.as_view(),
+         name="upload-menu"),
+    path('menu-list/',
+         CurrentDayMenuList.as_view(),
+         name="menu-list"),
+    path('vote/<int:menu_id>/',
+         VoteAPIView.as_view(),
+         name="new-vote"),
 ]
-
