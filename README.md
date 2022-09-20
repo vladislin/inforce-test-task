@@ -22,7 +22,7 @@ DB_PORT=5432
 #### Up docker-compose:
 
 ```
-docker-compose up
+docker-compose up -d --build
 ```
 
 #### To view endpoints go to: http://localhost:8000/swagger/
